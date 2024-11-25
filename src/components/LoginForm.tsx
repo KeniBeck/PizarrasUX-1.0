@@ -1,25 +1,28 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { PiCloverDuotone } from "react-icons/pi";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { LuUser } from "react-icons/lu";
 import { TbPasswordFingerprint } from "react-icons/tb";
+import { FaClover } from "react-icons/fa6";
+import "../styles/animations.css";
 
 type Inputs = {
   username: string;
   pass: string;
 };
+
 const LoginForm = () => {
   const { register, handleSubmit } = useForm<Inputs>();
   const [showPassword, setShowPassword] = useState(false);
   const onSubmit = (data: Inputs) => {
     console.log(data);
   };
+
   return (
     <>
       <div className="w-full md:w-[600px] z-10 m-2 bg-[#161616fb] rounded-lg flex justify-center items-center flex-col">
-        <div className="text-green-600 mt-2">
-          <PiCloverDuotone className="h-[60px] w-[60px]" />
+        <div className="text-green-600 mt-2 animate-spin-glow">
+          <FaClover className="h-[60px] w-[60px]" />
         </div>
         <div className="text-[#FFF113] font-lilita text-[34px]">
           El tebrol de la suerte
@@ -73,15 +76,18 @@ const LoginForm = () => {
               </div>
             </div>
             <div className="pb-6 pt-2">
-            <button type="submit" className="w-full h-[42px] bg-green-700 rounded-lg text-white">
-              Iniciar sesion
-            </button>
+              <button 
+                type="submit" 
+                className="w-full h-[42px] bg-green-700 rounded-lg text-white hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-all"
+              >
+                Iniciar sesión
+              </button>
             </div>
-            
           </div>
         </form>
       </div>
     </>
   );
 };
+
 export default LoginForm;
