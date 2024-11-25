@@ -5,7 +5,6 @@ import { LuUser } from "react-icons/lu";
 import { TbPasswordFingerprint } from "react-icons/tb";
 import { FaClover } from "react-icons/fa6";
 import "../styles/animations.css";
-import logo from "../assets/Logo1.svg";
 
 type Inputs = {
   username: string;
