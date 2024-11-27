@@ -4,11 +4,12 @@ const MenuContent = () => {
   return (
     <>
       <div className="w-full flex flex-col justify-center items-center z-10 gap-2">
+        
         <div className="p-2 rounded-lg  bg-[#161616fb] flex flex-col justify-center items-center gap-1">
           <div className="text-white text-2xl border-b pb-2">Jesus Aguilar</div>
           <div className="text-white text-2xl">Mazatlan</div>
         </div>
-        <div className="text-white bg-[#12f76675] p-2 rounded-lg text-2xl">
+        <div className="text-white  bg-green-700 p-3 rounded-lg text-2xl">
           {" "}
           Mensaje de prueba inicial{" "}
         </div>
@@ -42,6 +43,9 @@ const MenuContent = () => {
               </button>
             </div>
           </div>
+        </div>
+        <div className="p-4 bg-green-700 rounded-full flex justify-center items-center text-white text-2xl">
+          Puntos :1000
         </div>
       </div>
     </>
