@@ -43,6 +43,9 @@ const MenuContent = () => {
             </div>
           </div>
         </div>
+        <div className="p-2 bg-green-500 rounded-full flex justify-center items-center">
+          Puntos :1000
+        </div>
       </div>
     </>
   );
