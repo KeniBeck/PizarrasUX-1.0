@@ -5,17 +5,36 @@ import { LuUser } from "react-icons/lu";
 import { TbPasswordFingerprint } from "react-icons/tb";
 import { FaClover } from "react-icons/fa6";
 import "../styles/animations.css";
+import { authService } from "../services/authService";
+import { useNavigate } from "react-router-dom";
 
 type Inputs = {
-  username: string;
-  pass: string;
+  user: number;
+  password: string;
 };
 
 const LoginForm = () => {
   const { register, handleSubmit } = useForm<Inputs>();
   const [showPassword, setShowPassword] = useState(false);
-  const onSubmit = (data: Inputs) => {
-    console.log(data);
+  const navigate = useNavigate();
+  const onSubmit = async (data: Inputs) => {
+    try {
+      const formattedData = {
+        ...data,
+        user: Number(data.user),
+      }
+      const response = await authService.login(formattedData);
+      if (response.statusCode) {
+        if (response.statusCode !== 200) {
+          alert("Usuario o contraseña incorrectos");
+          return;
+        }
+      }
+      navigate("/menu");
+
+    } catch (error) {
+
+    }
   };
 
   return (
@@ -44,7 +63,7 @@ const LoginForm = () => {
                   type="text"
                   placeholder="Usuario"
                   className="appearance-none block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all"
-                  {...register("username")}
+                  {...register("user")}
                 />
               </div>
             </div>
@@ -60,7 +79,7 @@ const LoginForm = () => {
                   type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
                   className="appearance-none block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all"
-                  {...register("pass")}
+                  {...register("password")}
                 />
                 <button
                   type="button"
@@ -76,8 +95,8 @@ const LoginForm = () => {
               </div>
             </div>
             <div className="pb-6 pt-2">
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 className="w-full h-[42px] bg-green-700 rounded-lg text-white hover:bg-green-800 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 transition-all"
               >
                 Iniciar sesión
